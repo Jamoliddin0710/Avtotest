@@ -1,0 +1,23 @@
+﻿
+<h1 style="text-align: center">Tizimga kirish</h1>
+
+<div style="display: flex; justify-content: center">
+    <form asp-action="SignInPost" method="post">
+        
+        <input  class="inputtype" type="text" name="Phone" placeholder="Phone"/> <br/>
+        <input class="inputtype"  type="password" name="Password" placeholder="Password" /> <br />
+        <input style="background: blue" class="inputtype" type="submit" value="Sign in" />
+    </form>
+</div>
+<style>
+   
+    .inputtype {
+        width: 300px;
+        height: 40px;
+        margin-bottom: 10px;
+        font-size: 25px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+</style>
+
