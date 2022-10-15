@@ -2,25 +2,20 @@
 using Microsoft.Data.Sqlite;
 using Newtonsoft.Json;
 
-var connection = new SqliteConnection("Data Source=avtotest.db");
+var connection = new SqliteConnection("Data Source=questions.db");
 connection.Open();
 var command = connection.CreateCommand();
 CreateTable();
 void CreateTable()
 {
-   
-     command.CommandText = "CREATE TABLE IF NOT EXISTS " +
-                           " questions(id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                           " question_text TEXT," +
-                           "description TEXT," +
-                           " media TEXT) "; 
+
+    command.CommandText = "CREATE TABLE IF NOT EXISTS " +
+                          " questions(id INTEGER ," +
+                          " question_text TEXT," +
+                          "description TEXT," +
+                          " media TEXT) ";
     command.ExecuteNonQuery();
- /*   command.CommandText = "CREATE TABLE IF NOT EXISTS " +
-                          "choices(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                          "text TEXT, " +
-                          "answer BOOLEAN, " +
-                          "questionId INTEGER)";
-    command.ExecuteNonQuery();*/
+
     CreateChoice();
 }
 
@@ -41,11 +36,14 @@ if (Questions == null)
 {
     Console.WriteLine("question null");
 }
-Console.WriteLine(Questions?.Count);
+
 foreach (var question in Questions)
 {
     AddQuestion(question);
+
 }
+Console.WriteLine(Questions?.Count);
+
 
 void AddQuestion(QuestionEntity question)
 {
@@ -62,7 +60,7 @@ void AddQuestion(QuestionEntity question)
     }
 
     command.ExecuteNonQuery();
-    AddChoices(question.Choices,question.Id);
+    AddChoices(question.Choices, question.Id);
 }
 
 void AddChoices(List<Choice> choices, int questionid)
@@ -74,4 +72,7 @@ void AddChoices(List<Choice> choices, int questionid)
         command.ExecuteNonQuery();
     }
 }
+
+
+
 

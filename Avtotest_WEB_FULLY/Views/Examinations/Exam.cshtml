@@ -1,0 +1,46 @@
+﻿@model QuestionEntity
+@{
+
+    ViewData["Title"] = "Start Exam";
+    var ticketdata = (List<TicketData>)ViewBag.TicketData;
+    var ticket = (Ticket)ViewBag.Ticket;
+    var imgurl = Model.Media == null ? "avtotest.png" : $"{Model.Media}.png";
+}
+
+@{
+    for (int i = ticket.FromIndex; i < ticket.FromIndex + ticket.QuestionCount; i++)
+    {
+        var btnindex = i - ticket.FromIndex + 1;
+        var questionIndexModul = i == Model.Id ? "btn btn-primary" : "btn btn-secondary";
+         //i si questionid ga teng savolni olish
+        var questiondata = ticketdata.FirstOrDefault(data => data.questionid == i);
+        if (questiondata != null)
+        {
+            questionIndexModul = questiondata.answer ? "btn btn-success" : "btn btn-danger";
+
+        }
+        <a asp-action="Exam" class="@questionIndexModul" asp-route-ticketid="@ticket.id" asp-route-questionid="@i"> @btnindex</a>
+    }
+    <br/>
+}
+   <img class="w-25 mt-5" src="~/Images/@imgurl">
+    <h1>@Model.Question</h1>
+
+@{
+    foreach (var choice in Model.Choices)
+    {
+            var modul = "btn btn-info mb-3";
+            if (choice.id == ViewBag.choiceid)
+            {
+                modul = ViewBag.Answer ? "btn btn-success mb-3" : "btn btn-danger mb-3";
+            }
+        <a class="@modul" asp-controller="Examinations" asp-action="Exam"
+               asp-route-ticketid="@ticket.id"
+               asp-route-questionid="@Model.Id"
+               asp-route-choiceid="@choice.id"
+                type="button"  >@choice.Text</a>
+        <br/>
+
+        }
+  
+}

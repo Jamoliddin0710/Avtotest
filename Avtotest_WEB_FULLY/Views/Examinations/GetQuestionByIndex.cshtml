@@ -1,0 +1,13 @@
+﻿@model QuestionEntity
+@{
+    var imagename = Model.Media == null ? "avtotest.png" : Model.Media + ".png";
+}
+<img  src="~/Images/@imagename"/>
+<h1>@Model.Question</h1>
+
+@{
+    foreach (var choice in Model.Choices)
+    {
+        <button ><h6>@choice.Text</h6> </button> <br/>
+    }
+}

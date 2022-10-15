@@ -1,11 +1,42 @@
-﻿@{
+﻿
+<body class="menu-body">
+    <iframe id="backgroundImage" src="Profile/1.png"></iframe>
+@{
     ViewData["Title"] = "Home Page";
 }
+@{
+    if (!ViewBag.islogin)
+    {
+        <div class="text-center">
+            <h1 class="display-4">Welcome</h1>
+            <h1>Bu yerda 700 dan ortiq avtotest savollarini topishingiz mumkun</h1>
+            <a class="btn btn-primary" asp-controller="Users" asp-action="SignIn">Sign In</a>
+            <a class="btn btn-primary" asp-controller="Users" asp-action="SignUp">Sign Up</a>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <h1>Bu yerda 700 dan ortiq avtotest savollarini topishingiz mumkun</h1>
-    <a   class="btn btn-primary" asp-controller="Users" asp-action="SignIn">Sign In</a>
-    <a class="btn btn-primary" asp-controller="Users" asp-action="SignUp">Sign Up</a>
-   
-</div>
+        </div>
+    }
+}
+</body>
+
+<style>
+    
+    body {
+        background: #FFFFFF;
+        margin: 0;
+    }
+
+    #backgroundImage {
+        border: none;
+        height: 100%;
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        visibility: hidden;
+        width: 100%;
+    }
+
+    [show-background-image] #backgroundImage {
+        visibility: visible;
+    }
+
+</style>
