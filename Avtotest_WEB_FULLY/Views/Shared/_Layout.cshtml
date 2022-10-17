@@ -23,7 +23,16 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a id="button" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class = "nav-item">
+                            <button class="button">   <a class="nav-link text-dark" asp-controller="Examinations" asp-action="Index">Examination</a></button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="button">  <a  class="nav-link text-dark" asp-controller="Users" asp-action="Index">Profile</a>  </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="button">  <a class="nav-link text-dark" asp-controller="Tickets" asp-action="Index">Tickets</a>  </button>
                         </li>
                     </ul>
                 </div>
@@ -47,3 +56,21 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+<style>
+    .button {
+        color: white;
+        border-radius: 10px;
+        border: none;
+    }
+    .button :hover {
+            background: #005AFF;
+        margin: 5px;
+        margin-bottom: 5px;
+        margin-left: 5px;
+        margin-right:5px;
+        border-radius: 10px;
+    }
+    .body {
+        background: none;
+    }
+</style>

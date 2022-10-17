@@ -15,9 +15,22 @@ namespace Avtotest_WEB_FULLY.Service
             return null;
         }
 
-        public void SendUserPhone(string UserPhone , HttpContext context)
+        public void SendUserPhoneToCookies(string UserPhone , HttpContext context)
         {
-           context.Response.Cookies.Append("UserPhone",UserPhone);
+            var options = new CookieOptions()
+            {
+                Expires = DateTime.Now.AddDays(2)
+            };
+            context.Response.Cookies.Append("UserPhone",UserPhone);
         }
+        
+            public void UpdateUserPhoneCookie(string userPhone, HttpContext context)
+            {
+                context.Response.Cookies.Delete("UserPhone");
+                context.Response.Cookies.Append("UserPhone", userPhone, new CookieOptions() { Expires = DateTime.Now.AddDays(1) });
+            }
+
+        
+       
     }
 }

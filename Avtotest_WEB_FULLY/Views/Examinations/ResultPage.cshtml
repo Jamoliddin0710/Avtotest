@@ -1,0 +1,14 @@
+﻿@model Ticket
+@{
+    if (Model.CorrectAnswerCount >= 18)
+    {
+        <h1 style="color: green">Tabriklaymiz siz testdan muvaffaqiyatli yakunladingiz</h1>
+    }
+    else
+    {
+        <h1 style="color: red">Afsuski siz testdan  o'ta olamadingiz</h1>
+    }
+}
+<h1>TicketId: @Model.id</h1>
+<h1>QuestionCount : @Model.QuestionCount</h1>
+<h1>Result @Model.CorrectAnswerCount</h1>
