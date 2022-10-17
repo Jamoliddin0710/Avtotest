@@ -3,16 +3,30 @@ using Microsoft.Data.Sqlite;
 
 namespace Avtotest_WEB_FULLY.Repositories
 {
-    public class UsersRepository
+    interface IRepository<TU,Tint,TList,TString>
+    {
+        void OpenConnection();
+       void CreateUsersTable();
+        void InsertUser(TU tu);
+        public TU GetUserByIndex(Tint ti);
+        public TList GetUsers();
+     
+        public TU GetUserByPhoneNumber(TString tstring);
+        void  DeleteUser(Tint index);
+        void UpdateUser(TU tu);
+    }
+    public class UsersRepository : IRepository<User,int,List<User>,string>
     {
         private const string ConnectionString = "Data Source=users.db";
         private SqliteConnection connection;
         private SqliteCommand command;
 
+        
         public UsersRepository()
         {
             OpenConnection();
             CreateUsersTable();
+           
         }
 
         public void OpenConnection()
@@ -93,7 +107,7 @@ namespace Avtotest_WEB_FULLY.Repositories
             command.ExecuteNonQuery();
             //userlarni index bo'yicha o'chiradi          
         }
-
+        
         public void UpdateUser(User user)
         {
             command.CommandText =

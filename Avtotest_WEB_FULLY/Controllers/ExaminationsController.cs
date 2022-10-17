@@ -21,7 +21,7 @@ namespace Avtotest_WEB_FULLY.Controllers
 
         public IActionResult  GetQuestionById()
         {
-
+            return View();
         }
         //getquestionscount
         //get questionrange
